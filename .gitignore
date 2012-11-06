@@ -1,0 +1,7 @@
+*.class
+target
+debug
+# Package Files #
+*.jar
+*.war
+*.ear
