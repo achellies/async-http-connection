@@ -1,6 +1,6 @@
 package com.lurencun.http;
 
-import com.lurencun.http.impl.HttpUrlInvoker;
+import com.lurencun.http.impl.SimpleHttpInvoker;
 
 /**
  * @author : 桥下一粒砂
@@ -10,7 +10,7 @@ import com.lurencun.http.impl.HttpUrlInvoker;
  */
 public class InvokerFactory {
 	
-	private static Class<? extends RequestInvoker> InvokerType = HttpUrlInvoker.class;
+	private static Class<? extends RequestInvoker> InvokerType = SimpleHttpInvoker.class;
 	
 	public static RequestInvoker obtain(String method,String url,ParamsWrapper params,ResponseCallback callback){
 		return obtain(method, url, params, null, callback);
@@ -18,15 +18,15 @@ public class InvokerFactory {
 	
 	public static RequestInvoker obtain(String method,String url,ParamsWrapper params,Object token,ResponseCallback callback){
 		RequestInvoker invoker = null;
-		if(!InvokerType.equals(HttpUrlInvoker.class)){
+		if(!InvokerType.equals(SimpleHttpInvoker.class)){
 			try {
 				invoker = InvokerType.newInstance();
 			} catch (Exception exp) {
 				System.err.println(String.format("Cannot instance from %s, used default HttpUrlInvoker",InvokerType.getName()));
-				invoker = new HttpUrlInvoker();
+				invoker = new SimpleHttpInvoker();
 			}
 		}else{
-			invoker = new HttpUrlInvoker();
+			invoker = new SimpleHttpInvoker();
 		}
 		invoker.init(method, url, params, token, callback);
 		return invoker;

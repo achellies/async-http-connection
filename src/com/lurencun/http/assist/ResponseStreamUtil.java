@@ -21,7 +21,7 @@ public class ResponseStreamUtil {
 	private final static int FIND_CHARSET_CACHE_SIZE = 4 * 1024;
 	private final static String DEFAULT_CHARSET = "utf-8";
 	
-	public static String getHtmlCharset(String content){
+	public static String extraCharsetFromHTML(String content){
 		String encoding = null;
 		 Matcher m = Pattern.compile("<meta.*charset=\"?([a-zA-Z0-9-_/]+)\"?").matcher(content);
 		 if(m.find()){
@@ -39,7 +39,7 @@ public class ResponseStreamUtil {
 	        char[] cache = new char[FIND_CHARSET_CACHE_SIZE];
 	        isr.read(cache);
 	        isr.reset();
-	        encoding = getHtmlCharset(new String(cache));
+	        encoding = extraCharsetFromHTML(new String(cache));
 	        if(encoding == null) encoding = DEFAULT_CHARSET;
 	        isr = new InputStreamReader(is,encoding);
 		}

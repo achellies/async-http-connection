@@ -1,19 +1,28 @@
 # Async Http Connection
 =====================
 
- * a multithread async http connection framework. it can be use on android project or common java project.
- * 一个多线程异步Http连接框架。它可用于Android项目或者一般Java项目。
+ * a multithread callback-based async http connection framework. it can be use on android project or common java project.
+ * 一个基于回调机制的多线程异步Http连接框架。它可用于Android项目或者一般Java项目。
 
+## 适用
+	
+	Async HTTP Connection为简单的Http连接请求而设计。适用于API SDK等小数据传输项目，设计目标为Android项目。
+	当前项目属性为Java项目，并使用JUnit4作为测试环境，主要是Android项目调试不方便。
+	如果需要完善的功能，推荐一位国外大神的项目：[android-async-http](https://github.com/loopj/android-async-http)
+	
 ## 特点
 
- * **简单** Async Http Connection为简单的Http连接请求而设计，提供POST和GET两个接口。通过参数和回调接口完成整个Http连接的交互。
+ * **简单** 提供POST和GET两个接口。通过参数和回调接口完成整个Http连接的交互。
  * **轻量** 纯JDK实现，不依赖第三方Jar包。
  * **快速** 采用Executor多线程并发框架，秉承它的并发处理优势。
  * **可扩展** 框架提供Invoker扩展，通过实现RequestInvoker可方便的把HttpClient等优秀框架整合到项目中。
 
 ## 使用
 
-更多例子见源目录的**[test]**目录
+默认使用SimpleHttpInvoker类执行Http连接，基于HttpUrlConnection实现。
+提供两个接口实现类：BinaryResponseHandler、StringResponseHandler。分别处理二进制数据和字符数据。
+
+更多例子见源目录的 **test** 目录
 
 ### 简单的例子
 
@@ -22,7 +31,7 @@
 AsyncHttpConnection http = AsyncHttpConnection.getInstance();
 ParamsWrapper params = ...;
 String url = ...
-int requestId = http.get(url, null, new ResponseCallback() {
+int requestId = http.get(url, params, new ResponseCallback() {
 	
 	@Override
 	public void onResponse(InputStream response,URL url) {
@@ -49,7 +58,7 @@ int requestId = http.get(url, null, new ResponseCallback() {
 AsyncHttpConnection http = AsyncHttpConnection.getInstance();
 ParamsWrapper params = ...;
 String url = ...
-int requestId = http.post(url, null, new ResponseCallback() {
+int requestId = http.post(url, params, new ResponseCallback() {
 	
 	@Override
 	public void onResponse(InputStream response,URL url) {

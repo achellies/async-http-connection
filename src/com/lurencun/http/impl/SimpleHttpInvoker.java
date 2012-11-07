@@ -20,7 +20,7 @@ import com.lurencun.http.assist.MIMEContentType;
  * @date   : 2012-10-23
  * @desc   : TODO
  */
-public class HttpUrlInvoker extends RequestInvoker {
+public class SimpleHttpInvoker extends RequestInvoker {
 	
 	public final static String DEFAULT_USER_AGENT = String.format("AsyncHttpConnection (http://www.lurencun.com) version %s",
 			AsyncHttpConnection.VERSION);

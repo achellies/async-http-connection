@@ -23,9 +23,7 @@ public class BinaryPostTestCase extends BaseTeseCase {
 	protected void sendPostRequest(String url) {
 		ParamsWrapper params = new ParamsWrapper();
 		params.put("session_id", "55_18EF2B0F66521BCF1D45CECC561LK1F867_99");
-		params.put("avatar", "MyAvatar");
-		params.put("file", "file", "D:\\14.jpg");
-		params.put("file1", "file1", "D:\\13.jpg");
+		params.put("avatar", "avatar", "D:\\14.jpg");
 		http.post(url, params, new StringResponseHandler() {
 			
 			@Override
