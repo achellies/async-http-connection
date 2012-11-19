@@ -73,7 +73,7 @@ public class UrlsTestCase extends BaseTeseCase{
 			}
 
 			@Override
-			public void onResponse(InputStream response, URL url, Object token) {
+			public void onResponseWithToken(InputStream response, URL url, Object token) {
 			}
 		});
 	}

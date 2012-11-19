@@ -4,7 +4,7 @@ import java.net.URL;
 
 import org.junit.Assert;
 
-import com.lurencun.http.assist.BinaryResponseHandler;
+import com.lurencun.http.BinaryResponseHandler;
 
 /**
  * @author : 桥下一粒砂

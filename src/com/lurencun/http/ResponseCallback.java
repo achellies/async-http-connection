@@ -28,7 +28,7 @@ public interface ResponseCallback {
 	 * 返回服务端的响应流,并附带标识数据
 	 * @param response
 	 */
-	void onResponse(InputStream response,URL url,Object token);
+	void onResponseWithToken(InputStream response,URL url,Object token);
 
 	/**
 	 * 请求异常

@@ -28,7 +28,7 @@ public class InvokerFactory {
 		}else{
 			invoker = new SimpleHttpInvoker();
 		}
-		invoker.init(method, url, params, token, callback);
+		invoker.initWithToken(method, url, params, token, callback);
 		return invoker;
 	}
 	

@@ -36,18 +36,10 @@ public abstract class BaseTeseCase {
 	protected abstract String[] loadUrls();
 	
 	
-	/**
-	 * 如果在发出了GET请求，返回true。
-	 * @param url
-	 */
 	protected void sendGetRequest(String url){
 		requestBack();
 	}
 	
-	/**
-	 * 如果在发出了GET请求，返回true。
-	 * @param url
-	 */
 	protected void sendPostRequest(String url){
 		requestBack();
 	};

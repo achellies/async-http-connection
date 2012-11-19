@@ -34,32 +34,32 @@ public class ParamsWrapper {
 	}
 	
 	public ParamsWrapper put(String name,String value){
-		putToParamsArray(name,value);
+		appendToParamsArray(name,value);
 		return this;
 	}
 	
 	public ParamsWrapper put(String name,int value){
-		putToParamsArray(name,value);
+		appendToParamsArray(name,value);
 		return this;
 	}
 
 	public ParamsWrapper put(String name,boolean value){
-		putToParamsArray(name,value);
+		appendToParamsArray(name,value);
 		return this;
 	}
 
 	public ParamsWrapper put(String name,float value){
-		putToParamsArray(name,value);
+		appendToParamsArray(name,value);
 		return this;
 	}
 
 	public ParamsWrapper put(String name,long value){
-		putToParamsArray(name,value);
+		appendToParamsArray(name,value);
 		return this;
 	}
 
 	public ParamsWrapper put(String name,double value){
-		putToParamsArray(name,value);
+		appendToParamsArray(name,value);
 		return this;
 	}
 	
@@ -68,7 +68,7 @@ public class ParamsWrapper {
 		return this;
 	}
 	
-	private ParamsWrapper putToParamsArray(String name,Object value){
+	private ParamsWrapper appendToParamsArray(String name,Object value){
 		if(value != null && value != null && !"".equals(name) && !"".equals(value) ){
 			nameValueArray.add(new NameValue(name, value));
 		}

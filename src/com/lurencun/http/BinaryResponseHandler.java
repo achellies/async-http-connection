@@ -1,11 +1,11 @@
-package com.lurencun.http.assist;
+package com.lurencun.http;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ConnectException;
 import java.net.URL;
 
-import com.lurencun.http.ResponseCallback;
+import com.lurencun.http.assist.ResponseStreamUtil;
 
 /**
  * @author : 桥下一粒砂
@@ -17,15 +17,15 @@ public abstract class BinaryResponseHandler implements ResponseCallback {
 
 	@Override
 	final public void onResponse(InputStream response,URL url) {
-		onResponse(response, url, null);
+		onResponseWithToken(response, url, null);
 	}
 
 	@Override
-	final public void onResponse(InputStream response, URL url, Object token) {
+	final public void onResponseWithToken(InputStream response, URL url, Object token) {
 		try {
 			byte[] data = ResponseStreamUtil.convertToByteArray(response);
 			if(token != null){
-				onResponse(data,url,token);
+				onResponseWithToken(data,url,token);
 			}else{
 				onResponse(data,url);
 			}
@@ -37,5 +37,5 @@ public abstract class BinaryResponseHandler implements ResponseCallback {
 
 	public abstract void onResponse(byte[] data,URL url);
 	
-	public void onResponse(byte[] data,URL url,Object token){};
+	public void onResponseWithToken(byte[] data,URL url,Object token){};
 }

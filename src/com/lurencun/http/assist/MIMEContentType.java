@@ -12,7 +12,7 @@ public class MIMEContentType {
 
 	private final static HashMap<String, String> types = new HashMap<String, String>();
 
-	public String getContentType(String suffix){
+	public static String getContentType(String suffix){
 		if(types.containsKey(suffix)){
 			return types.get(suffix);
 		}else{

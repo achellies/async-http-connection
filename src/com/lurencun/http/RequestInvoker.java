@@ -18,18 +18,16 @@ public abstract class RequestInvoker implements Runnable{
 	protected ResponseCallback callback;
 	protected Object token;
 
-	public RequestInvoker(){ }
-	
 	public void init(String method,String url,ParamsWrapper params,ResponseCallback callback){
-		init(method, url, params, null, callback);
+		initWithToken(method, url, params, null, callback);
 	}
 	
-	public void init(String method,String url,ParamsWrapper params,Object extra,ResponseCallback callback){
+	public void initWithToken(String method,String url,ParamsWrapper params,Object token,ResponseCallback callback){
 		this.method = method;
 		this.url = url;
 		this.params = params;
 		this.callback = callback;
-		this.token = extra;
+		this.token = token;
 	}
 	
 }

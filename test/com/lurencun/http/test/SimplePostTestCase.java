@@ -5,7 +5,7 @@ import java.net.URL;
 import junit.framework.Assert;
 
 import com.lurencun.http.ParamsWrapper;
-import com.lurencun.http.assist.StringResponseHandler;
+import com.lurencun.http.StringResponseHandler;
 
 /**
  * @author : 桥下一粒砂

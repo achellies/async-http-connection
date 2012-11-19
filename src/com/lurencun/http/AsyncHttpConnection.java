@@ -1,5 +1,7 @@
 package com.lurencun.http;
 
+import com.lurencun.http.assist.ThreadPoolManager;
+
 /**
  * @author : 桥下一粒砂
  * @email  : chenyoca@gmail.com
@@ -8,7 +10,7 @@ package com.lurencun.http;
  */
 public class AsyncHttpConnection {
 
-	public final static String VERSION = "1.0.0";
+	public final static String VERSION = "1.0.1";
 	
 	private AsyncHttpConnection(){}
 	private static class SingletonProvider {
@@ -17,9 +19,6 @@ public class AsyncHttpConnection {
 	public static AsyncHttpConnection getInstance(){
 		return SingletonProvider.instance;
 	}
-	
-	private final static String RESPONSE_CALLBACK_NULL = "ResponseCallback cannot be null";
-	private final static String CONNECTION_URL_NULL = "Connection url cannot be null";
 	
 	private final ThreadPoolManager mThreadPoolMng = new ThreadPoolManager();
 	
@@ -87,8 +86,8 @@ public class AsyncHttpConnection {
 	}
 	
 	private void verifyParams(String url,ResponseCallback callback){
-		if(callback == null) throw new IllegalArgumentException(RESPONSE_CALLBACK_NULL);
-		if(url == null) throw new IllegalArgumentException(CONNECTION_URL_NULL);
+		if(callback == null) throw new IllegalArgumentException("ResponseCallback cannot be null");
+		if(url == null) throw new IllegalArgumentException("Connection url cannot be null");
 	}
 	
 	private int sendRequest(String method,String url,ParamsWrapper params,Object token,ResponseCallback handler){

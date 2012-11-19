@@ -32,7 +32,6 @@ public class SimpleHttpInvoker extends RequestInvoker {
 	private static final String END_MP_BLOCK = "\r\n\r\n";
 	private static final String MULTIPART_FORM_DATA = "multipart/form-data";
 	private static final String XWWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
-	private static final MIMEContentType mimeType = new MIMEContentType();
 	@Override
 	public void run() {
 		HttpURLConnection httpConnection = null;
@@ -55,7 +54,7 @@ public class SimpleHttpInvoker extends RequestInvoker {
 			callback.onSubmit(targetURL);
 			httpConnection.connect();
 			if(token != null){
-				callback.onResponse(httpConnection.getInputStream(),targetURL,token);
+				callback.onResponseWithToken(httpConnection.getInputStream(),targetURL,token);
 			}else{
 				callback.onResponse(httpConnection.getInputStream(),targetURL);
 			}
@@ -107,7 +106,7 @@ public class SimpleHttpInvoker extends RequestInvoker {
 		buffer.append(MP_BOUNDARY).append("\r\n");
 		buffer.append("Content-Disposition: form-data; name=\"").append(paramName).append("\"; ")
 			.append("filename=\"").append(fileName).append("\"\r\n");
-		final String contentType = mimeType.getContentType(suffix(filePath));
+		final String contentType = MIMEContentType.getContentType(exportSuffix(filePath));
 		buffer.append("Content-Type: ").append(contentType).append(END_MP_BLOCK);
 		byte[] resourceSplitLine = buffer.toString().getBytes();
 		FileInputStream input = null;
@@ -128,7 +127,7 @@ public class SimpleHttpInvoker extends RequestInvoker {
 		}
 	}
 	
-	private static String suffix(String path){
+	private static String exportSuffix(String path){
 		return path.substring(path.lastIndexOf(".") + 1);
 	}
 	

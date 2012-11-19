@@ -4,7 +4,7 @@ import java.net.URL;
 
 import org.junit.Assert;
 
-import com.lurencun.http.assist.StringResponseHandler;
+import com.lurencun.http.StringResponseHandler;
 
 /**
  * @author : 桥下一粒砂
@@ -35,7 +35,7 @@ public class TokenTestCase extends BaseTeseCase {
 			}
 
 			@Override
-			public void onResponse(String content, URL url, Object token) {
+			public void onResponseWithToken(String content, URL url, Object token) {
 				System.out.println("token -> "+String.valueOf(token));
 				Assert.assertEquals("123456", String.valueOf(token));
 				requestBack();
