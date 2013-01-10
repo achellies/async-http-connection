@@ -14,7 +14,7 @@ public class SimpleGetTestCase extends BaseTeseCase{
 
 	@Override
 	protected String[] loadUrls() {
-		return new String[]{"http://www.baidu.com"};
+		return new String[]{"http://api.douban.com/book/subject/isbn/9787115264725"};
 	}
 
 	@Override
