@@ -51,7 +51,7 @@ public class ThreadPoolManager {
 					}
 				}
 			}
-		}, TASK_SCHEDULE_DELAY);
+		}, 0,TASK_SCHEDULE_DELAY);
 	}
 	
 	/**
