@@ -69,7 +69,8 @@ public class ParamsWrapper {
 	}
 	
 	private ParamsWrapper appendToParamsArray(String name,Object value){
-		if(value != null && value != null && !"".equals(name) && !"".equals(value) ){
+		if(name != null && value != null 
+				&& !"".equals(name) && !"".equals(value) ){
 			nameValueArray.add(new NameValue(name, value));
 		}
 		return this;
