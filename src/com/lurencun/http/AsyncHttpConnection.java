@@ -10,7 +10,7 @@ import com.lurencun.http.assist.ThreadPoolManager;
  */
 public class AsyncHttpConnection {
 
-	public final static String VERSION = "1.0.1";
+	public final static String VERSION = "1.0.2";
 	
 	private AsyncHttpConnection(){}
 	private static class SingletonProvider {
