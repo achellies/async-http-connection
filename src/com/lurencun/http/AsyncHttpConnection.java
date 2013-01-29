@@ -10,7 +10,7 @@ import com.lurencun.http.assist.ThreadPoolManager;
  */
 public class AsyncHttpConnection {
 
-	public final static String VERSION = "1.0.2";
+	public final static String VERSION = "1.0.3";
 	
 	private AsyncHttpConnection(){}
 	private static class SingletonProvider {
@@ -20,7 +20,7 @@ public class AsyncHttpConnection {
 		return SingletonProvider.instance;
 	}
 	
-	private final ThreadPoolManager mThreadPoolMng = new ThreadPoolManager();
+	private final ThreadPoolManager threadPoolMng = new ThreadPoolManager();
 	
 	/**
 	 * Send a 'get' request to url with params, response on callback
@@ -82,7 +82,7 @@ public class AsyncHttpConnection {
 	 * Destory async http connection. All the requests(finished or not) will be interrupt immediately.
 	 */
 	public void destory(){
-		mThreadPoolMng.destory();
+		threadPoolMng.destory();
 	}
 	
 	private void verifyParams(String url,ResponseCallback callback){
@@ -92,7 +92,7 @@ public class AsyncHttpConnection {
 	
 	private int sendRequest(String method,String url,ParamsWrapper params,Object token,ResponseCallback handler){
 		if(url == null) return ThreadPoolManager.INALID_REQUEST;
-		return mThreadPoolMng.submit(InvokerFactory.obtain(method, url, params, token, handler));
+		return threadPoolMng.submit(InvokerFactory.obtain(method, url, params, token, handler));
 	}
 	
 }
