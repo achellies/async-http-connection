@@ -5,6 +5,7 @@ import java.net.URL;
 
 import junit.framework.Assert;
 
+import com.lurencun.http.ParamsWrapper;
 import com.lurencun.http.ResponseCallback;
 
 /**
@@ -69,7 +70,7 @@ public class UrlsTestCase extends BaseTeseCase{
 			}
 
 			@Override
-			public void onSubmit(URL url) {
+			public void onSubmit(URL url,ParamsWrapper params) {
 			}
 
 			@Override

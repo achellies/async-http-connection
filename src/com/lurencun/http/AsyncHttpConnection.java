@@ -1,6 +1,7 @@
 package com.lurencun.http;
 
-import com.lurencun.http.assist.ThreadPoolManager;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author : 桥下一粒砂
@@ -10,7 +11,9 @@ import com.lurencun.http.assist.ThreadPoolManager;
  */
 public class AsyncHttpConnection {
 
-	public final static String VERSION = "1.0.3";
+	public final static String VERSION = "1.0.4";
+	final static int THREAD_POOL_SIZE = 5;
+	final ExecutorService threadPoolMng = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
 	
 	private AsyncHttpConnection(){}
 	private static class SingletonProvider {
@@ -20,8 +23,6 @@ public class AsyncHttpConnection {
 		return SingletonProvider.instance;
 	}
 	
-	private final ThreadPoolManager threadPoolMng = new ThreadPoolManager();
-	
 	/**
 	 * Send a 'get' request to url with params, response on callback
 	 * @param url
@@ -30,8 +31,8 @@ public class AsyncHttpConnection {
 	 * @return request id
 	 *
 	 */
-	public int get(String url,ParamsWrapper params,ResponseCallback callback){
-		return get(url, params, null,callback);
+	public void get(String url,ParamsWrapper params,ResponseCallback callback){
+		get(url, params, null,callback);
 	}
 	
 	/**
@@ -45,9 +46,9 @@ public class AsyncHttpConnection {
 	 * @return request id
 	 *
 	 */
-	public int get(String url,ParamsWrapper params,Object token,ResponseCallback callback){
+	public void get(String url,ParamsWrapper params,Object token,ResponseCallback callback){
 		verifyParams(url,callback);
-		return sendRequest(RequestInvoker.METHOD_GET,url,params,token,callback);
+		sendRequest(RequestInvoker.METHOD_GET,url,params,token,callback);
 	}
 	
 	/**
@@ -58,8 +59,8 @@ public class AsyncHttpConnection {
 	 * @return request id
 	 *
 	 */
-	public int post(String url,ParamsWrapper params,ResponseCallback callback){
-		return post(url, params, null,callback);
+	public void post(String url,ParamsWrapper params,ResponseCallback callback){
+		post(url, params, null,callback);
 	}
 	
 	/**
@@ -73,16 +74,9 @@ public class AsyncHttpConnection {
 	 * @return request id
 	 *
 	 */
-	public int post(String url,ParamsWrapper params,Object token,ResponseCallback callback){
+	public void post(String url,ParamsWrapper params,Object token,ResponseCallback callback){
 		verifyParams(url,callback);
-		return sendRequest(RequestInvoker.METHOD_POST,url,params,token,callback);
-	}
-	
-	/**
-	 * Destory async http connection. All the requests(finished or not) will be interrupt immediately.
-	 */
-	public void destory(){
-		threadPoolMng.destory();
+		sendRequest(RequestInvoker.METHOD_POST,url,params,token,callback);
 	}
 	
 	private void verifyParams(String url,ResponseCallback callback){
@@ -90,9 +84,9 @@ public class AsyncHttpConnection {
 		if(url == null) throw new IllegalArgumentException("Connection url cannot be null");
 	}
 	
-	private int sendRequest(String method,String url,ParamsWrapper params,Object token,ResponseCallback handler){
-		if(url == null) return ThreadPoolManager.INALID_REQUEST;
-		return threadPoolMng.submit(InvokerFactory.obtain(method, url, params, token, handler));
+	private void sendRequest(String method,String url,ParamsWrapper params,Object token,ResponseCallback handler){
+		if(url == null) return;
+		threadPoolMng.submit(InvokerFactory.obtain(method, url, params, token, handler));
 	}
 	
 }

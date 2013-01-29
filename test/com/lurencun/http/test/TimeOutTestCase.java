@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import java.io.InputStream;
 import java.net.URL;
 
+import com.lurencun.http.ParamsWrapper;
 import com.lurencun.http.ResponseCallback;
 
 /**
@@ -44,7 +45,7 @@ public class TimeOutTestCase extends BaseTeseCase{
 			}
 
 			@Override
-			public void onSubmit(URL url) {
+			public void onSubmit(URL url,ParamsWrapper params) {
 			}
 
 			@Override

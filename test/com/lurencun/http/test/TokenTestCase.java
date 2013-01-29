@@ -4,6 +4,7 @@ import java.net.URL;
 
 import org.junit.Assert;
 
+import com.lurencun.http.ParamsWrapper;
 import com.lurencun.http.StringResponseHandler;
 
 /**
@@ -23,7 +24,7 @@ public class TokenTestCase extends BaseTeseCase {
 	protected void sendGetRequest(String url) {
 		http.get(url, null,"123456", new StringResponseHandler() {
 			@Override
-			public void onSubmit(URL url) {
+			public void onSubmit(URL url,ParamsWrapper params) {
 			}
 			
 			@Override

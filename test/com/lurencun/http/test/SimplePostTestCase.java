@@ -34,7 +34,7 @@ public class SimplePostTestCase extends BaseTeseCase {
 		params.put("lastname", KEY_VAL);
 		http.post(url, params, new StringResponseHandler() {
 			@Override
-			public void onSubmit(URL url) { 
+			public void onSubmit(URL url,ParamsWrapper params) { 
 				System.out.println(">> target: "+url.getHost()+" --> "+url.getPath());
 			}
 			@Override

@@ -51,7 +51,7 @@ public class SimpleHttpInvoker extends RequestInvoker {
 			if(METHOD_POST.equals(method)){
 				setParams(httpConnection, method, params);
 			}
-			callback.onSubmit(targetURL);
+			callback.onSubmit(targetURL, params);
 			httpConnection.connect();
 			if(token != null){
 				callback.onResponseWithToken(httpConnection.getInputStream(),targetURL,token);
@@ -65,7 +65,7 @@ public class SimpleHttpInvoker extends RequestInvoker {
 		}
 	}
 	
-	public static void setParams(final HttpURLConnection conn,String method,ParamsWrapper params) throws IOException {
+	public static void setParams(final HttpURLConnection conn, String method, ParamsWrapper params) throws IOException {
 		if(params == null) return;
 		conn.setDoOutput(true);
 		if(params.pathParamArray.isEmpty()){

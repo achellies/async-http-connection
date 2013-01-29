@@ -27,7 +27,7 @@ public class BinaryPostTestCase extends BaseTeseCase {
 		http.post(url, params, new StringResponseHandler() {
 			
 			@Override
-			public void onSubmit(URL url) {
+			public void onSubmit(URL url ,ParamsWrapper params) {
 			}
 			
 			@Override

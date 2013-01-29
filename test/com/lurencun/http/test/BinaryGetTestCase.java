@@ -5,6 +5,7 @@ import java.net.URL;
 import org.junit.Assert;
 
 import com.lurencun.http.BinaryResponseHandler;
+import com.lurencun.http.ParamsWrapper;
 
 /**
  * @author : 桥下一粒砂
@@ -24,7 +25,7 @@ public class BinaryGetTestCase extends BaseTeseCase {
 		http.get(url, null, new BinaryResponseHandler() {
 			
 			@Override
-			public void onSubmit(URL url) {
+			public void onSubmit(URL url, ParamsWrapper params) {
 			}
 			
 			@Override

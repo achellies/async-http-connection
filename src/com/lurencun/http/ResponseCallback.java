@@ -16,7 +16,7 @@ public interface ResponseCallback {
 	 * 在Http请求被提交时回调
 	 * @param url 被提交的URL
 	 */
-	void onSubmit(URL url);
+	void onSubmit(URL url, ParamsWrapper params);
 	
 	/**
 	 * 返回服务端的响应流
